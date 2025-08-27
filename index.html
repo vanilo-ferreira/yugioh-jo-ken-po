@@ -18,15 +18,21 @@
   <body>
     <div class="bg-video">
       <video class="video" autoplay loop muted>
-        <source src="./src/assets/video/yugi.mp4"
-        type="video/mp4"/>
+        <source src="./src/assets/video/yugi.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="conatiner">
       <div class="container_left">
-        <div class="score_box"></div>
-        <div class="menu_avatar"></div>
-        <div class="card_details"></div>
+        <div class="score_box">
+          <span id="score_points">Win: 0 | Lose: 0</span>
+        </div>
+        <div class="menu_avatar">
+          <img id="card-image" />
+        </div>
+        <div class="card_details">
+          <p id="card-name"></p>
+          <p id="card-type"></p>
+        </div>
       </div>
 
       <div class="container_right">
