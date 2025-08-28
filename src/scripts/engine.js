@@ -195,6 +195,9 @@ function init() {
 
   drawCrads(5, playerSides.player1);
   drawCrads(5, playerSides.computer);
+
+  const bgm = document.getElementById("bgm");
+  bgm.play();
 }
 
 init();
