@@ -87,9 +87,10 @@
 .card-versus_container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding-top: 0.1rem;
   max-height: 300px;
-  margin-top: 5rem;
 }
 
 .versus-top,
@@ -119,6 +120,7 @@
 .card-infield {
   height: 11.2rem;
   width: 8rem;
+  border: 1px solid #fff;
   border-radius: 8px;
 }
 

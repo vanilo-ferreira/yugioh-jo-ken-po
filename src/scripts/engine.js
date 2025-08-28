@@ -84,8 +84,11 @@ async function setCardsField(cardId) {
   state.fieldCards.player.style.display = "block";
   state.fieldCards.computer.style.display = "block";
 
-  state.fieldCards.player.src = cardData[cardId].img;
-  state.fieldCards.computer.src = cardData[computerCardId].img;
+  await ShowHiddenCardFieldsImagens(true);
+
+  await hiddenCardDetails();
+
+  await drawCardsInFields(cardId, computerCardId);
 
   let duelResults = await checkDuelResults(cardId, computerCardId);
 
@@ -93,8 +96,31 @@ async function setCardsField(cardId) {
   await drawButton(duelResults);
 }
 
+async function drawCardsInFields(cardId, computerCardId) {
+  state.fieldCards.player.src = cardData[cardId].img;
+  state.fieldCards.computer.src = cardData[computerCardId].img;
+}
+
+async function ShowHiddenCardFieldsImagens(value) {
+  if (value === true) {
+    state.fieldCards.player.style.display = "block";
+    state.fieldCards.computer.style.display = "block";
+  }
+
+  if (value === false) {
+    state.fieldCards.player.style.display = "none";
+    state.fieldCards.computer.style.display = "none";
+  }
+}
+
 async function updateScore() {
   state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.compuperScore}`;
+}
+
+async function hiddenCardDetails() {
+  state.cardSprites.avatar.src = "";
+  state.cardSprites.name.innerText = "";
+  state.cardSprites.type.innerText = "";
 }
 
 async function drawButton(text) {
@@ -150,21 +176,23 @@ async function resetDuel() {
   state.cardSprites.avatar.src = "";
   state.actions.button.style.display = "none";
 
-  state.fieldCards.player.style.display = "nome";
-  state.fieldCards.computer.style.display = "nome"
+  state.fieldCards.player.style.display = "none";
+  state.fieldCards.computer.style.display = "none"
 
   init();
 }
 
 async function playAudio(status) {
   const audio = new Audio(`./src/assets/audios/${status}.wav`);
-  
+
   try {
     audio.play();
-  } catch {}
+  } catch { }
 }
 
 function init() {
+  ShowHiddenCardFieldsImagens(false);
+
   drawCrads(5, playerSides.player1);
   drawCrads(5, playerSides.computer);
 }
